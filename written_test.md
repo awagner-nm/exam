@@ -15,18 +15,28 @@ arr.map((val) => val * val) // [1,4,9]
 ```
 
 Please write your answer [here](./map.js)
+Array.prototype.map = function(cb){
+	let resultArr = [];
+	for(let i=0; i<this.length; i++){
+		resultArr.push(cb(arr[i]))
+	}
+	return resultArr
+}
 
 2. What is a React `component`?
 
 ---
 > Your answer here...
 ---
+an object that resutls in HTML content.
 
 3. You can define a React component a few different ways, including (1) as a simple function or (2) as a class that extends the `Component` piece of the React library. How should you decide when to use which syntax?
 
 ---
 > Your answer here...
 ---
+
+if your component doesn't require managing state, use the simple function.  Use the class only when requiring state.
 
 4. Please transpile the following JSX code into JavaScript that the browser can understand:
 
@@ -49,12 +59,21 @@ console.log(arr) // [3,2,1];
 ```
 
 Please write your answer [here](./reverseArr.js)
+function reverseArr(arr) { 
+	let resultArr = [];
+	for(let i=arr.length-1; i>=0; i--){
+		resultArr.push(arr[i])
+	}
+
+	arr = resultArr;
+}
 
 6. How does using the `new` keyword affect a function's behavior in JavaScript?
 
 ---
 > Your answer here...
 ---
+creates a new object.  and provides access with 'this'
 
 7. What is the best thing?
 * A) Callbacks
@@ -65,5 +84,5 @@ Please write your answer [here](./reverseArr.js)
 ---
 > Your answer here...
 ---
-
+C - promises
 Done! Time to start the [React app](./app-details.md)!
