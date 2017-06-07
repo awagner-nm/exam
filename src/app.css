@@ -1,0 +1,25 @@
+.wrapper{
+	width: 800px;
+	margin: 20px auto;
+    padding: 10px;
+}
+
+.homeBtn{
+	display: inline-block;
+}
+
+.headerTxt{
+	display: inline-block;
+}
+
+.headerDiv{
+	border-bottom: 1px solid gray;
+}
+.searchBox{
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+}
+
+.userResults{
+	text-align: center;
+}
