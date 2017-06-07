@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
-
-import RepoDetail from './RepoDetail.js'
-// <RepoDetail />
 
 import './app.css';
 
@@ -11,7 +7,6 @@ class UserResult extends Component{
     state={
       filter: ''
     }
-
 
     handleChange = (event) => {
         this.setState({
@@ -34,10 +29,11 @@ class UserResult extends Component{
         }
       })    
     }
+
     const repos = filteredRepos.map((repoObj) => {
             return (
-              <tr key={repoObj.id}><td><a href={repoObj.html_url}>{repoObj.name}</a></td></tr>
-
+              <tr key={repoObj.id}><td onClick={()=> this.props.detailRepoClick(repoObj)}>
+              {repoObj.name}</td></tr>
             )
     })
 

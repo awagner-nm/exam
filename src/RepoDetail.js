@@ -1,17 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { PropTypes } from 'prop-types';
 
-const RepoDetail = () => {
-
+const RepoDetail = (props) => {
     return (
 
-    <div className="App">
-    	<div className='headerDiv'>
-	        <h1 className='headerTxt'>Github viewer</h1>
-	        <button className='homeBtn'>Home</button>
-    	</div>
     	<div className='wrapper'>
-        <h4>{this.props.repoObj.name} details</h4>
+        <h4>{props.repoObj.name} details</h4>
 
 		<table className="table">
 		    <thead>
@@ -23,15 +17,18 @@ const RepoDetail = () => {
 		    </thead>
 		    <tbody>
 		        <tr>
-		            <td>{this.props.repoObj.stargazers_count}</td>
-		            <td>{this.props.repoObj.forks}</td>
-		            <td>{this.props.repoObj.language}</td>
+		            <td>{props.repoObj.stargazers_count}</td>
+		            <td>{props.repoObj.forks}</td>
+		            <td>{props.repoObj.language}</td>
 		        </tr>
 		    </tbody>
 			</table>
 		</div>
-    </div>
     );
 }
+
+RepoDetail.propTypes = {
+	repoObj: PropTypes.object.isRequired
+};
 
 export default RepoDetail;
