@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const RepoDetail = () => {
 
@@ -11,7 +11,7 @@ const RepoDetail = () => {
 	        <button className='homeBtn'>Home</button>
     	</div>
     	<div className='wrapper'>
-        <h4>repo name details</h4>
+        <h4>{this.props.repoObj.name} details</h4>
 
 		<table className="table">
 		    <thead>
@@ -23,9 +23,9 @@ const RepoDetail = () => {
 		    </thead>
 		    <tbody>
 		        <tr>
-		            <td>32</td>
-		            <td>6</td>
-		            <td>JavaScript</td>
+		            <td>{this.props.repoObj.stargazers_count}</td>
+		            <td>{this.props.repoObj.forks}</td>
+		            <td>{this.props.repoObj.language}</td>
 		        </tr>
 		    </tbody>
 			</table>
