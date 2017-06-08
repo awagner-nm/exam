@@ -20,9 +20,15 @@ class App extends Component {
 
     }
 
-  render() {
+    handleHomeBtnClick = () => {
+    	this.setState({
+    		repos: [],
+        	userName: ''
+    	})
+    }
 
-let formattedHeader;
+  	render() {
+
 
 	return (
 		
@@ -58,7 +64,8 @@ let formattedHeader;
 					<div className='headerDiv'>
 						<h1 className='headerTxt'>Github viewer</h1>
 						<div className='spacerDiv'></div>
-						<Link className="button" to='/'>Home</Link>
+						<Link onClick={this.handleHomeBtnClick} 
+								className="button" to='/'>Home</Link>
 					</div>	            	
 	            	<RepoDetail {...props} repoObj={repoDetails} />
 	            	</div>
