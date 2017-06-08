@@ -2,10 +2,12 @@ module.exports =
 
 function reverseArr(arr) { 
 
-	let resultArr = [];
-	for(let i=arr.length-1; i>=0; i--){
-		resultArr.push(arr[i])
+	let temp;
+	for(let i=0; i<=(arr.length-1)/2; i++){
+		temp = arr[i];
+		arr[i] = arr[(arr.length-1) - i];
+		arr[(arr.length-1) - i] = temp;
 	}
 
-	arr = resultArr;
+	return arr;
 }

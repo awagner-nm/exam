@@ -15,7 +15,8 @@ class Search extends Component{
         searchName: '',
         searchDisabled: true,
         searchClass: 'large-12 columns',
-        errorMsg: ''
+        errorMsg: '',
+        spinner: '' //"loading-indicator medium"
     }
 
     handleChange = (event) => {
@@ -35,24 +36,33 @@ class Search extends Component{
     }
 
     handleClick = () => {
+        let spinner = "loading-indicator medium"
+
+        this.setState({spinner});
+
+        spinner = '';
+
         getReposByUsername(this.state.searchName)
         	.then((repos) => {
         		this.setState({
         			searchClass: 'large-12 columns',
-        			errorMsg: ''
+        			errorMsg: '',
+                    spinner
         		})
         		this.props.handleSearch(repos, this.state.searchName)
         	})
         	.catch(() => {
         		this.setState({
         			searchClass: 'large-12 columns error',
-        			errorMsg: 'Unknown username!'
+        			errorMsg: 'Unknown username!',
+                    spinner
         		});
         	});
     }
 
 	render(){
 	    return (
+            <div>
 		    <div className='searchBox'>
 		        <div className="row">
 			        <div className={this.state.searchClass}>
@@ -70,6 +80,10 @@ class Search extends Component{
 			        </div>
 		    	</div>
 	      	</div>
+            <div className='indicatorDiv'>
+            <span className={this.state.spinner}></span>
+            </div>
+            </div>
 	    );
 	}
 }

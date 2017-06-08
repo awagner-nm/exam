@@ -16,7 +16,7 @@ DONE
 * Components receiving `props` should use `prop-types` (5 pts)
 
 
-BACKLOG
+post exam completed:
+* Loading spinner should show while fetching data (5 pts)
 * Navigating to details page should update the URL (10 pts)
 * If on details page, header should contain working Home link (5 pts)
-* Loading spinner should show while fetching data (5 pts)

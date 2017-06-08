@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import Search from './Search.js';
 import UserResult from './UserResult.js';
 import RepoDetail from './RepoDetail.js';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import index from './index.js';
+import { BrowserRouter as Router, Route, Redirect, Link } from 'react-router-dom';
 
 import './app.css';
 
 class App extends Component {
     state = {
         repos: [],
-        userName: '',
-        repoDetailObj: {},
-        detailRepo: false
+        userName: ''
     }
 
     handleSearch = (repos, userName) => {
@@ -23,46 +20,54 @@ class App extends Component {
 
     }
 
-    handleDetailRepo = (repoObj) => {
-    	this.setState({
-            repoDetailObj: repoObj,
-            detailRepo: true
-        })
-    }
-
   render() {
 
-	let body;
-
-	if(this.state.detailRepo){
-		body = (
-			<RepoDetail repoObj={this.state.repoDetailObj} />
-		)
-	}
-
-	else{
-		body = (
-		        <div className='wrapper'>
-			        <Search handleSearch={this.handleSearch} />
-			        <UserResult user={this.state.userName} 
-			        			repos={this.state.repos} 
-			        			detailRepoClick={this.handleDetailRepo} />        
-			       
-		    	</div>
-		)
-	}
+let formattedHeader;
 
 	return (
 		
 		<Router>
 	      <div className="App">
-	      <div className="headerDiv">
-	        <h1 className='headerTxt'>Github viewer</h1>
-	       	<Link className="button" to='/'>Home</Link>
-	       	<Route exact path='/' component={index} />
-	        </div>
-			{body}
-	      </div>
+
+			<Route exact path="/" render={(props) => { 
+				return(
+					<div>
+			        <h1 className='headerTxt'>Github viewer</h1>
+			        <div className='wrapper'>
+
+				      	<div>
+						  	<Search handleSearch={this.handleSearch} />
+						    <UserResult user={this.state.userName} 
+						        		repos={this.state.repos} 
+						        		detailRepoClick={this.handleDetailRepo} />  
+					    </div>
+				    </div>
+				    </div>
+				)      
+            }} />
+
+            <Route path="/repo/:repoID" render={(props) => {
+                const repoDetails = this.state.repos.find(currRepo => currRepo.id.toString() === props.match.params.repoID)
+
+                if (repoDetails === undefined) {
+                    return <Redirect to="/" />
+                }
+
+	            return(
+	            	<div>
+					<div className='headerDiv'>
+						<h1 className='headerTxt'>Github viewer</h1>
+						<div className='spacerDiv'></div>
+						<Link className="button" to='/'>Home</Link>
+					</div>	            	
+	            	<RepoDetail {...props} repoObj={repoDetails} />
+	            	</div>
+	            	)
+				    	
+ 			}} />
+
+			
+			</div>
 	      </Router>
 	    );
 	}

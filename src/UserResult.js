@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import './app.css';
 
 class UserResult extends Component{
@@ -32,10 +32,13 @@ class UserResult extends Component{
 
     const repos = filteredRepos.map((repoObj) => {
             return (
-              <tr key={repoObj.id}><td onClick={()=> this.props.detailRepoClick(repoObj)}>
-              {repoObj.name}</td></tr>
+              <tr key={repoObj.id}>
+                <td>
+                  <Link to={`/repo/${repoObj.id}`}>{repoObj.name}</Link>
+                </td>
+              </tr>
             )
-    })
+          })
 
 
     if(this.props.user.length > 0){

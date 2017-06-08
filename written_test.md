@@ -49,6 +49,9 @@ if your component doesn't require managing state, use the simple function.  Use 
 ---
 > Your answer here...
 ---
+React.createElement(<div>
+    <h1 className='headline'>Hello Dojo!</h1>
+</div>)
 
 5. Reverse an array. Write a function that accepts an array and returns *the same array* with the values reversed.
 
@@ -60,13 +63,17 @@ console.log(arr) // [3,2,1];
 
 Please write your answer [here](./reverseArr.js)
 function reverseArr(arr) { 
-	let resultArr = [];
-	for(let i=arr.length-1; i>=0; i--){
-		resultArr.push(arr[i])
+
+	let temp;
+	for(let i=0; i<=(arr.length-1)/2; i++){
+		temp = arr[i];
+		arr[i] = arr[(arr.length-1) - i];
+		arr[(arr.length-1) - i] = temp;
 	}
 
-	arr = resultArr;
+	return arr;
 }
+
 
 6. How does using the `new` keyword affect a function's behavior in JavaScript?
 
